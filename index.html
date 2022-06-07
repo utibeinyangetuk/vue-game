@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>vue practice</title>
+	</head>
+
+	<body>
+		<header>
+			<h2>monster vs player</h2>
+		</header>
+
+		<section id="game">
+			<div class="container">
+				<p>monster health = {{monster}}</p>
+				<div class="live" :style="{width:monster + '%'}"></div>
+			</div>
+			<div class="container">
+				<p>player health = {{user}}</p>
+				<div class="live" :style="{width:user + '%'}"></div>
+			</div>
+
+			<div class="actions">
+				<button @click="attackMonster">Attack</button>
+				<button>Heal</button>
+				<button>special attack</button>
+				<button>surrender</button>
+			</div>
+
+			<div class="log">
+				<h2>Battle log</h2>
+				<p>user won</p>
+			</div>
+		</section>
+		<script src="https://unpkg.com/vue@3"></script>
+		<script src="app.js" />
+	</body>
+
+</html>
