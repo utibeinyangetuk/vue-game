@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,22 +27,31 @@
 				</div>
 			</div>
 
-			<div class="actions">
+			<div class="container" v-if="winner">
+				<h2>Game Over!</h2>
+				<h3 v-if="winner==='user'">You Won</h3>
+				<h3 v-else-if="winner==='monster'">You Lost</h3>
+				<h3 v-else>It is a draw</h3>
+				<button @click="restart">Restart</button>
+			</div>
+
+			<div class="actions" v-else>
 				<button @click="attackMonster">Attack</button>
 				<button @click="healPlayer">Heal</button>
 				<button @click="SpecialAttackMonster" :disabled="special">
 					special attack
 				</button>
-				<button>surrender</button>
+				<button @click="surrender">surrender</button>
 			</div>
 
 			<div class="log">
 				<h2>Battle log</h2>
-				<p>user won</p>
+				<ul>
+					<li>user won.</li>
+				</ul>
 			</div>
 		</section>
 		<script src="https://unpkg.com/vue@3"></script>
 		<script src="app.js" />
 	</body>
-
 </html>
