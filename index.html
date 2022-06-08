@@ -16,18 +16,24 @@
 
 		<section id="game">
 			<div class="container">
-				<p>monster health = {{monster}}</p>
-				<div class="live" :style="{width:monster + '%'}"></div>
+				<p>monster's health = {{monster}}</p>
+				<div class="container2">
+					<div class="live" :style="[damage,damage2]"></div>
+				</div>
 			</div>
 			<div class="container">
-				<p>player health = {{user}}</p>
-				<div class="live" :style="{width:user + '%'}"></div>
+				<p>player's health = {{user}}</p>
+				<div class="container2">
+					<div class="live" :style="[damage3,damage4]"></div>
+				</div>
 			</div>
 
 			<div class="actions">
 				<button @click="attackMonster">Attack</button>
-				<button>Heal</button>
-				<button>special attack</button>
+				<button @click="healPlayer">Heal</button>
+				<button @click="SpecialAttackMonster" :disabled="special">
+					special attack
+				</button>
 				<button>surrender</button>
 			</div>
 
