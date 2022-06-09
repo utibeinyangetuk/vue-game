@@ -48,19 +48,22 @@ const app = Vue.createApp({
 		attackMonster() {
 			// increment the current round by 1 after every attack
 			this.currentRound++;
-			const result = this.monster - randomAttack(5, 12);
-			this.monster = result;
+			const result = randomAttack(5, 12);
+			this.monster -= result;
+			this.battleLogs("player", "dealt damage of", result);
 			// call the attackPlayer method after the monster method has ran to run it next.
 			this.attackPlayer();
 		},
 		attackPlayer() {
-			const result = this.user - randomAttack(5, 12);
-			this.user = result;
+			const result = randomAttack(5, 12);
+			this.user -= result;
+			this.battleLogs("monster", "dealt damage of", result);
 		},
 		SpecialAttackMonster() {
 			this.currentRound++;
-			const result = this.monster - randomAttack(10, 25);
-			this.monster = result;
+			const result = randomAttack(10, 25);
+			this.monster -= result;
+			this.battleLogs("player", "dealt special damage of", result);
 			this.attackPlayer();
 		},
 		healPlayer() {
@@ -71,6 +74,7 @@ const app = Vue.createApp({
 			} else {
 				this.user = heal;
 			}
+			this.battleLogs("player", "used heal function");
 			this.attackPlayer();
 		},
 		restart() {
@@ -78,11 +82,19 @@ const app = Vue.createApp({
 			this.monster = 100;
 			this.winner = null;
 			this.currentRound = 0;
-			this.log = [];
+			this.battleLog = [];
 		},
 		surrender() {
 			this.user = 0;
 			this.winner = "monster";
+			this.battleLogs("player surrenders!");
+		},
+		battleLogs(who, action, value) {
+			this.battleLog.unshift({
+				actionby: who,
+				actiontype: action,
+				actionvalue: value,
+			});
 		},
 	},
 	watch: {

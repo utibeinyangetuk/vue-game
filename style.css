@@ -55,7 +55,8 @@ header {
 .log {
 	margin-top: 20px;
 	border: 1px solid;
-	height: 100px;
+	min-height: 400px;
+	height: 100%;
 	width: 600px;
 	border-radius: 5px;
 	display: flex;
